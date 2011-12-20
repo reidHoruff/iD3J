@@ -9,9 +9,7 @@ public class ID3FrameHeader {
 	
 	private byte body[];
 	private RandomAccessFile ras;
-	private int size = 0;
-	
-	
+	private int size = 0;	
 	
 	public static final int 
 							
@@ -39,6 +37,10 @@ public class ID3FrameHeader {
 		} 
 		catch (Exception e) {
 			throw new ID3FileException("internal error occurred while reading FrameHeader");
+		}
+		
+		if( !isValid() ){
+			return;
 		}
 		
 		//frame sizes are supposed to be stored in syncsafe bit patterns
@@ -87,7 +89,7 @@ public class ID3FrameHeader {
 		return (body[9] & (1 << flag)) > 0;
 	}
 	
-	public boolean isvalid(byte b[] )
+	public boolean isvalid(byte b[])
 	{
 		return (b[0] >= 'A' && b[0] <= 'Z') &&
 		((b[1] >= 'A' && b[1] <= 'Z') || (b[1] >= '0' && b[1] <= '9')) &&

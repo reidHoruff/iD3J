@@ -39,7 +39,7 @@ public class ID3Frame {
 			
 			if( header.flagIsSet(ID3FrameHeader.HasDataLengthIndicator)){
 				dataLengthIndicator = ID3Bitwise.compileIntFromSyncsafe(ras.readByte(), ras.readByte(), ras.readByte(), ras.readByte());
-				offset++;
+				offset+=4;
 			}
 			
 			body = new byte[ h.size() - offset ];

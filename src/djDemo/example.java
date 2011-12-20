@@ -8,10 +8,7 @@ public class example {
 
 	public static void main(String[] args) throws FileNotFoundException {
 		
-		File file = new File("my_song.mp3");
-		printInfo(file);
-		
-		list(new File("/media/Shared_/Music/good music/"));
+		list(new File("/media/Shared/Music/good music/"));
 	}
 	
 	public static void printInfo(File file)
@@ -21,6 +18,7 @@ public class example {
 		try{
 			tagBody.parse(); 
 		}catch(ID3Exception e){
+			System.out.println( file.getAbsolutePath() );
 			e.printStackTrace();
 		}
 		//doesn't have to be in try/catch block; all exceptions thrown are Runtime.
@@ -38,7 +36,7 @@ public class example {
 		if(albumFrame != null)
 			songAlbum = albumFrame.getText();
 		
-		System.out.println( songTitle + " -on- " + songAlbum );
+		//System.out.println( songTitle + " -on- " + songAlbum );
 		
 		try{
 			tagBody.close();
