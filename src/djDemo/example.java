@@ -2,13 +2,15 @@ package djDemo;
 
 import dj.*;
 import djExceptions.ID3Exception;
+import djExceptions.ID3TagNotFoundException;
+import djExceptions.UnsupportedID3TagVersionException;
+
 import java.io.*;
 
 public class example {
 
 	public static void main(String[] args) throws FileNotFoundException {
-		
-		list(new File("/media/Shared/Music/good music/"));
+		list(new File("/media/Shared/Music/"));
 	}
 	
 	public static void printInfo(File file)
@@ -17,26 +19,31 @@ public class example {
 		
 		try{
 			tagBody.parse(); 
-		}catch(ID3Exception e){
-			System.out.println( file.getAbsolutePath() );
-			e.printStackTrace();
+		}catch(ID3TagNotFoundException e){
+			System.out.println("ID3 tag was not found");
+			return;
 		}
-		//doesn't have to be in try/catch block; all exceptions thrown are Runtime.
+		catch(UnsupportedID3TagVersionException e){
+			System.out.println("ID3 tag version not supported");
+			return;
+		}
 		
 		ID3Frame titleFrame = tagBody.getFrame("TIT2");
 		ID3Frame albumFrame = tagBody.getFrame("TALB");
 		//returns null if not found
 		
-		String songTitle = "<none>";
-		String songAlbum = "<none>";
+		String songTitle = "<unknown>";
+		String songAlbum = "<unknown>";
 		
-		if(titleFrame != null)
+		if(titleFrame != null){
 			songTitle = titleFrame.getText();
+		}
 		
-		if(albumFrame != null)
+		if(albumFrame != null){
 			songAlbum = albumFrame.getText();
+		}
 		
-		//System.out.println( songTitle + " -on- " + songAlbum );
+		System.out.println( songTitle + " -on- " + songAlbum );
 		
 		try{
 			tagBody.close();
@@ -45,13 +52,17 @@ public class example {
 		}
 	}
 	
+	/* depth first file searching */
 	public static void list( File f ) throws FileNotFoundException
 	{		
-		if(f.isFile() && f.getName().endsWith(".mp3"))
+		if(f.isFile() && f.getName().endsWith(".mp3")){
 			printInfo(f);
+		}
 		
-		else if(f.isDirectory())
-			for(File cur: f.listFiles())
+		else if(f.isDirectory()){
+			for(File cur: f.listFiles()){
 				list(cur);
+			}		
+		}
 	}
 }
