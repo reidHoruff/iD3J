@@ -1,6 +1,7 @@
-package dj;
+package iD3J;
 
-import djExceptions.*;
+import iD3J.Exceptions.*;
+
 import java.io.RandomAccessFile;
 
 public class ID3TagHeader {

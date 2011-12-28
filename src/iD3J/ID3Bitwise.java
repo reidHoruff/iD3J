@@ -1,4 +1,4 @@
-package dj;
+package iD3J;
 
 public class ID3Bitwise
 {

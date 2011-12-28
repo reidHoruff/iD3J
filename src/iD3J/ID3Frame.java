@@ -1,8 +1,9 @@
-package dj;
+package iD3J;
+
+import iD3J.Exceptions.ID3Exception;
+import iD3J.Exceptions.ID3FileException;
 
 import java.io.RandomAccessFile;
-import djExceptions.ID3Exception;
-import djExceptions.ID3FileException;
 
 public class ID3Frame {
 	

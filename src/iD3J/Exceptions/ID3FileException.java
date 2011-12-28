@@ -1,4 +1,4 @@
-package djExceptions;
+package iD3J.Exceptions;
 
 @SuppressWarnings("serial")
 public class ID3FileException extends ID3Exception{

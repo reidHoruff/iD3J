@@ -1,9 +1,10 @@
-package dj;
+package iD3J;
+
+import iD3J.Exceptions.*;
 
 import java.io.*;
 import java.util.Hashtable;
 
-import djExceptions.*;
 
 public class ID3TagBody {
 	

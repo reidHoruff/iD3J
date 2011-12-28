@@ -1,4 +1,4 @@
-package djExceptions;
+package iD3J.Exceptions;
 
 @SuppressWarnings("serial")
 public class UnsupportedID3TagVersionException extends ID3Exception{

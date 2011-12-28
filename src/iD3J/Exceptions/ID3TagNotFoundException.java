@@ -1,4 +1,4 @@
-package djExceptions;
+package iD3J.Exceptions;
 
 @SuppressWarnings("serial")
 public class ID3TagNotFoundException extends ID3Exception{
